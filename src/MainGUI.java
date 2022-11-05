@@ -4,28 +4,23 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class MainGUI {
-    private JFrame mainFrame;
+    private JFrame window;
     private final int height;
     private final int width;
     private String windowName;
 
     private Demo[] dataStructureDemos;
 
-    public MainGUI(int width, int height, String frameName, int numOfDemos) {
-        this.dataStructureDemos = new Demo[numOfDemos];
+    private JPanel animalButtonContainer;
+    private JPanel dataStructureDemoContainer;
+    private JPanel menuContainer;
+
+    public MainGUI(int width, int height, String frameName, Demo[] demos) {
+        this.dataStructureDemos = demos;
         this.width = width;
         this.height = height;
         windowName = frameName;
-        initJFrame();
-        initDemos();
-    }
-
-    private void initDemos() {
-        JPanel llPanel = new JPanel();
-        llPanel.setBackground(Color.blue);
-        LinkedListDemo llDemo = new LinkedListDemo(llPanel);
-        dataStructureDemos[0] = llDemo;
-        mainFrame.add(llPanel);
+        initGUI();
     }
 
     public int getHeight() { return height; }
@@ -40,26 +35,76 @@ public class MainGUI {
     }
 
     private void updateJFrameWindowName() {
-        mainFrame.setTitle(windowName);
+        window.setTitle(windowName);
+    }
+
+    private void initGUI(){
+        initJFrame();
+        initContainers();
+        initDemos();
     }
 
     private void initJFrame() {
-        mainFrame = new JFrame(windowName);
-        mainFrame.addWindowListener(new WindowAdapter() {
+        window = new JFrame(windowName);
+        window.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {System.exit(0);}
         });
-        mainFrame.setSize(this.width, this.height);
-        mainFrame.setLayout(new BoxLayout(mainFrame.getContentPane(), BoxLayout.Y_AXIS));
-        mainFrame.setVisible(true);
+        window.setSize(this.width, this.height);
+        window.setLayout(new GridBagLayout());
+        window.setVisible(true);
+    }
+
+    private void initDemos() {
+//        dataStructureDemoContainer.add(dataStructureDemos[0].getJPanel());
+//        window.add(dataStructureDemos[0].getJPanel());
+    }
+
+    private void initContainers() {
+        animalButtonContainer = new JPanel();
+        animalButtonContainer.setBackground(Color.blue);
+        dataStructureDemoContainer = new JPanel();
+        dataStructureDemoContainer.setBackground(Color.red);
+        menuContainer = new JPanel();
+        menuContainer.setBackground(Color.green);
+
+        GridBagConstraints animalButtonConstraints = new GridBagConstraints();
+        animalButtonConstraints.fill = GridBagConstraints.BOTH;
+        animalButtonConstraints.gridheight = 2;
+        animalButtonConstraints.weighty = 1;
+        animalButtonConstraints.weightx = 0.10;
+
+        GridBagConstraints dataStructureDemoConstraints = new GridBagConstraints();
+        dataStructureDemoConstraints.gridx = 1;
+        dataStructureDemoConstraints.fill = GridBagConstraints.BOTH;
+        dataStructureDemoConstraints.weightx = 0.5;
+        dataStructureDemoConstraints.weighty = 0.5;
+
+        GridBagConstraints menuConstraints = new GridBagConstraints();
+        menuConstraints.gridx = 1;
+        menuConstraints.fill = GridBagConstraints.BOTH;
+        menuConstraints.weighty = 0.10;
+        menuConstraints.weightx = 0.5;
+
+        window.add(animalButtonContainer, animalButtonConstraints);
+        window.add(dataStructureDemoContainer, dataStructureDemoConstraints);
+        window.add(menuContainer, menuConstraints);
     }
 
     public static void main(String[] args) {
         int height = 1000;
         int width = 1000;
-        int numOfDemos = 1;
         String mainGUIName = "Zoo";
 
-        new MainGUI(width, height, mainGUIName, numOfDemos);
+        int numOfDemos = 1;
+        Demo[] demos = new Demo[numOfDemos];
+
+//      linked list test
+        JPanel llPanel = new JPanel();
+        llPanel.setBackground(Color.pink);
+        LinkedListDemo llDemo = new LinkedListDemo(llPanel);
+        demos[0] = llDemo;
+
+        new MainGUI(width, height, mainGUIName, demos);
     }
 }
