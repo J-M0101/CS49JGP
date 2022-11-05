@@ -1,4 +1,5 @@
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -8,12 +9,23 @@ public class MainGUI {
     private final int width;
     private String windowName;
 
-    public MainGUI(int width, int height, String frameName) {
+    private Demo[] dataStructureDemos;
+
+    public MainGUI(int width, int height, String frameName, int numOfDemos) {
+        this.dataStructureDemos = new Demo[numOfDemos];
         this.width = width;
         this.height = height;
         windowName = frameName;
         initJFrame();
-        mainFrame.setVisible(true);
+        initDemos();
+    }
+
+    private void initDemos() {
+        JPanel llPanel = new JPanel();
+        llPanel.setBackground(Color.blue);
+        LinkedListDemo llDemo = new LinkedListDemo(llPanel);
+        dataStructureDemos[0] = llDemo;
+        mainFrame.add(llPanel);
     }
 
     public int getHeight() { return height; }
@@ -38,13 +50,16 @@ public class MainGUI {
             public void windowClosing(WindowEvent e) {System.exit(0);}
         });
         mainFrame.setSize(this.width, this.height);
+        mainFrame.setLayout(new BoxLayout(mainFrame.getContentPane(), BoxLayout.Y_AXIS));
+        mainFrame.setVisible(true);
     }
 
     public static void main(String[] args) {
         int height = 1000;
         int width = 1000;
+        int numOfDemos = 1;
         String mainGUIName = "Zoo";
 
-        new MainGUI(width, height, mainGUIName);
+        new MainGUI(width, height, mainGUIName, numOfDemos);
     }
 }

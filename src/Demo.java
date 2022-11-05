@@ -14,8 +14,8 @@ abstract class Demo {
 
     public JPanel getJPanel() { return this.jPanel; }
 
-    public boolean getHasCompleted() { return this.hasCompleted; }
-
+    public boolean getHasCompleted() { return hasCompleted; }
+    public void setHasCompleted(boolean hasCompleted) { this.hasCompleted = hasCompleted; }
 
     /**
      * Plays the "show"
