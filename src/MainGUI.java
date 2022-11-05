@@ -6,12 +6,12 @@ public class MainGUI {
     private JFrame mainFrame;
     private final int height;
     private final int width;
-    private String jFrameName;
+    private String windowName;
 
     public MainGUI(int width, int height, String frameName) {
         this.width = width;
         this.height = height;
-        jFrameName = frameName;
+        windowName = frameName;
         initJFrame();
         mainFrame.setVisible(true);
     }
@@ -20,14 +20,19 @@ public class MainGUI {
 
     public int getWidth() { return width; }
 
-    public String getJFrameName() { return jFrameName; }
+    public String getJFrameName() { return windowName; }
 
     public void setJFrameName(String name) {
-        jFrameName = name;
+        windowName = name;
+        updateJFrameWindowName();
+    }
+
+    private void updateJFrameWindowName() {
+        mainFrame.setTitle(windowName);
     }
 
     private void initJFrame() {
-        mainFrame = new JFrame(jFrameName);
+        mainFrame = new JFrame(windowName);
         mainFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {System.exit(0);}
@@ -36,8 +41,8 @@ public class MainGUI {
     }
 
     public static void main(String[] args) {
-        int height = 700;
-        int width = 700;
+        int height = 1000;
+        int width = 1000;
         String mainGUIName = "Zoo";
 
         new MainGUI(width, height, mainGUIName);
