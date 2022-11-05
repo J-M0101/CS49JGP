@@ -15,11 +15,13 @@ public class MainGUI {
     private JPanel dataStructureDemoContainer;
     private JPanel menuContainer;
 
-    public MainGUI(int width, int height, String frameName, Demo[] demos) {
+    public MainGUI(int width, int height, String frameName, Demo[] demos, JPanel animalButtonJPanel, JPanel menuJPanel) {
         this.dataStructureDemos = demos;
         this.width = width;
         this.height = height;
         windowName = frameName;
+        animalButtonContainer = animalButtonJPanel;
+        menuContainer = menuJPanel;
         initGUI();
     }
 
@@ -56,17 +58,19 @@ public class MainGUI {
     }
 
     private void initDemos() {
+//        do any initializations needed for demos showing them
+//        once user hits go can be handled in another method
 //        dataStructureDemoContainer.add(dataStructureDemos[0].getJPanel());
 //        window.add(dataStructureDemos[0].getJPanel());
     }
 
     private void initContainers() {
-        animalButtonContainer = new JPanel();
-        animalButtonContainer.setBackground(Color.blue);
+//        animalButtonContainer = new JPanel();
+//        animalButtonContainer.setBackground(Color.blue);
         dataStructureDemoContainer = new JPanel();
         dataStructureDemoContainer.setBackground(Color.red);
-        menuContainer = new JPanel();
-        menuContainer.setBackground(Color.green);
+//        menuContainer = new JPanel();
+//        menuContainer.setBackground(Color.green);
 
         GridBagConstraints animalButtonConstraints = new GridBagConstraints();
         animalButtonConstraints.fill = GridBagConstraints.BOTH;
@@ -96,15 +100,24 @@ public class MainGUI {
         int width = 1000;
         String mainGUIName = "Zoo";
 
+//      panel for the animal button section
+        JPanel animalButtonPanel = new JPanel();
+        animalButtonPanel.setBackground(Color.blue);
+
+//      panel for menu button section
+        JPanel menuPanel = new JPanel();
+        menuPanel.setBackground(Color.green);
+
+//      set up demo stuff for the show DS section
         int numOfDemos = 1;
         Demo[] demos = new Demo[numOfDemos];
 
-//      linked list test
+//      linked list show example(WIP)
         JPanel llPanel = new JPanel();
         llPanel.setBackground(Color.pink);
         LinkedListDemo llDemo = new LinkedListDemo(llPanel);
         demos[0] = llDemo;
 
-        new MainGUI(width, height, mainGUIName, demos);
+        new MainGUI(width, height, mainGUIName, demos, animalButtonPanel, menuPanel);
     }
 }
