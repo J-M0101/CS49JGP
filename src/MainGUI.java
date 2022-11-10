@@ -23,6 +23,8 @@ public class MainGUI {
         animalButtonContainer = animalButtonJPanel;
         menuContainer = menuJPanel;
         initGUI();
+//      testing demos
+        dataStructureDemos[0].play();
     }
 
     public int getHeight() { return height; }
@@ -41,12 +43,12 @@ public class MainGUI {
     }
 
     private void initGUI(){
-        initJFrame();
+        initWindow();
         initContainers();
         initDemos();
     }
 
-    private void initJFrame() {
+    private void initWindow() {
         window = new JFrame(windowName);
         window.addWindowListener(new WindowAdapter() {
             @Override
@@ -116,6 +118,9 @@ public class MainGUI {
         JPanel llPanel = new JPanel();
         llPanel.setBackground(Color.pink);
         LinkedListDemo llDemo = new LinkedListDemo(llPanel);
+        Chicken aChicken = new Chicken("Gallus gallus", 13, true, 3, 5);
+        llDemo.addAnimal(aChicken);
+
         demos[0] = llDemo;
 
         new MainGUI(width, height, mainGUIName, demos, animalButtonPanel, menuPanel);
