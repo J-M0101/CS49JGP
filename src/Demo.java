@@ -12,7 +12,7 @@ abstract class Demo {
         this.hasCompleted = false;
     }
 
-    public JPanel getJPanel() { return this.GUIContainer; }
+    public JPanel getGUIContainer() { return this.GUIContainer; }
 
     public boolean getHasCompleted() { return hasCompleted; }
     public void setHasCompleted(boolean hasCompleted) { this.hasCompleted = hasCompleted; }

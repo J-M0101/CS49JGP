@@ -24,6 +24,11 @@ public class MainGUI {
         menuContainer = menuJPanel;
         initGUI();
 //      testing demos
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.weightx = gbc.weighty = 1.0;
+
+        dataStructureDemoContainer.setLayout(new GridBagLayout());
+        dataStructureDemoContainer.add(dataStructureDemos[0].getGUIContainer(), gbc);
         dataStructureDemos[0].play();
     }
 
@@ -116,10 +121,19 @@ public class MainGUI {
 
 //      linked list show example(WIP)
         JPanel llPanel = new JPanel();
-        llPanel.setBackground(Color.pink);
+        llPanel.setBackground(Color.yellow);
         LinkedListDemo llDemo = new LinkedListDemo(llPanel);
-        Chicken aChicken = new Chicken("Gallus gallus", 13, true, 3, 5);
-        llDemo.addAnimal(aChicken);
+        Chicken aChicken0 = new Chicken("Gallus gallus 00", 13, true, 3, 5);
+        Chicken aChicken1 = new Chicken("Gallus gallus 01", 13, true, 3, 5);
+        Chicken aChicken2 = new Chicken("Gallus gallus 02", 13, true, 3, 5);
+        Chicken aChicken3 = new Chicken("Gallus gallus 03", 13, true, 3, 5);
+        Chicken aChicken4 = new Chicken("Gallus gallus 04", 13, true, 3, 5);
+
+        llDemo.addAnimal(aChicken0);
+        llDemo.addAnimal(aChicken1);
+        llDemo.addAnimal(aChicken2);
+        llDemo.addAnimal(aChicken3);
+        llDemo.addAnimal(aChicken4);
 
         demos[0] = llDemo;
 
