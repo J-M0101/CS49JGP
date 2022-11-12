@@ -10,10 +10,22 @@ public class MainGUI implements PropertyChangeListener {
     private final int height;
     private final int width;
     private String windowName;
+    /**
+     * Demos that will be played
+     */
     private Demo[] dataStructureDemos;
     private int currentDemoIndex;
+    /**
+     * Container to hold all animal selection buttons ex. "Chicken"
+     */
     private JPanel animalButtonContainer;
+    /**
+     * Demos will be shown in this container
+     */
     private JPanel dataStructureDemoContainer;
+    /**
+     * Container to hold all menu buttons ex. "GO"
+     */
     private JPanel menuContainer;
 
     public MainGUI(int width, int height, String frameName, Demo[] demos, JPanel animalButtonJPanel, JPanel menuJPanel) {
@@ -42,12 +54,18 @@ public class MainGUI implements PropertyChangeListener {
         window.setTitle(windowName);
     }
 
+    /**
+     * Initialize the whole root GUI
+     */
     private void initGUI(){
         initWindow();
         initContainers();
-        initDemos();
+        initDemosContainer();
     }
 
+    /**
+     * Initialize GUI window
+     */
     private void initWindow() {
         window = new JFrame(windowName);
         window.addWindowListener(new WindowAdapter() {
@@ -59,15 +77,20 @@ public class MainGUI implements PropertyChangeListener {
         window.setVisible(true);
     }
 
-    private void initDemos() {
-//      do any initializations needed for demos showing them
-//      once user hits go can be handled in another method
+    /**
+     * Initializations needed for container holding Demos in window
+     */
+    private void initDemosContainer() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.weightx = gbc.weighty = 1.0;
 
         dataStructureDemoContainer.setLayout(new GridBagLayout());
     }
 
+    /**
+     * initializes the window GUI structure layout
+     * Sets the container section's dimensions
+     */
     private void initContainers() {
         dataStructureDemoContainer = new JPanel();
         dataStructureDemoContainer.setBackground(Color.red);
@@ -95,11 +118,19 @@ public class MainGUI implements PropertyChangeListener {
         window.add(menuContainer, menuConstraints);
     }
 
+    /**
+     * Adds Demo to Demo view and registers property listener
+     * @param demoToAdd Demo to add to Demo view section
+     */
     private void addDemoToDemoContainer(Demo demoToAdd) {
         dataStructureDemoContainer.add(demoToAdd.getGUIContainer());
         demoToAdd.addPropertyChangeListener(this);
     }
 
+    /**
+     * Removes Demo from Demo view section and unregisters property lister
+     * @param demoToRemove Demo to remove from Demo view section
+     */
     private void removeDemoFromDemoContainer(Demo demoToRemove) {
         dataStructureDemoContainer.remove(demoToRemove.getGUIContainer());
         dataStructureDemoContainer.revalidate();
@@ -113,9 +144,16 @@ public class MainGUI implements PropertyChangeListener {
         oldDemo.setHasCompleted(false);
     }
 
+    /**
+     * Logic to execute when registered property(s) have changed.
+     * As soon as a Demo's hasCompleted status changes to true
+     * will remove it and add/play the next Demo.
+     * @param evt A PropertyChangeEvent object describing the event source
+     *            and the property that has changed.
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if ((boolean) evt.getNewValue()) {
+        if (evt.getPropertyName().equals("hasCompleted") && (boolean) evt.getNewValue()) {
             removeActiveDemoFromContainer();
             currentDemoIndex++;
             if (currentDemoIndex < dataStructureDemos.length) {
@@ -123,23 +161,21 @@ public class MainGUI implements PropertyChangeListener {
                 addDemoToDemoContainer(newDemo);
                 newDemo.play();
             }
-//            else if (currentDemoIndex >= dataStructureDemos.length) {
-//                this.currentDemoIndex = 0;
-//            }
         }
     }
 
+    /**
+     * Starts playing all Demos from the start(index = 0)
+     * once user hits the "Go" button.
+     */
     private void playDemos() {
-        if (dataStructureDemoContainer.getComponentCount() != 0) {
+        if (dataStructureDemoContainer.getComponentCount() != 0 || currentDemoIndex != 0) {
             removeActiveDemoFromContainer();
         }
         this.currentDemoIndex = 0;
         Demo currentDemo = dataStructureDemos[this.currentDemoIndex];
         addDemoToDemoContainer(currentDemo);
         currentDemo.play();
-
-//      test code
-//        currentDemo.setHasCompleted(true);
     }
 
     public static void main(String[] args) {
@@ -177,6 +213,7 @@ public class MainGUI implements PropertyChangeListener {
 
         demos[0] = llDemo;
 
+//      Testing adding another LL demo
         JPanel llPanel1 = new JPanel();
         llPanel1.setBackground(Color.magenta);
         LinkedListDemo llDemo2 = new LinkedListDemo(llPanel1);
@@ -189,6 +226,8 @@ public class MainGUI implements PropertyChangeListener {
         demos[1] = llDemo2;
 
         MainGUI gui = new MainGUI(width, height, mainGUIName, demos, animalButtonPanel, menuPanel);
+
+//      Testing playing the Demos since no "Go" button has be implemented
         gui.playDemos();
     }
 }
