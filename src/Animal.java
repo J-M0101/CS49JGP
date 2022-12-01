@@ -2,16 +2,12 @@
 abstract class Animal {
     private String species;
     private int weight;
-    private boolean bidedal;
-    private int weightOfFood;
-    private int areaNeeded;
+    private String imgpath;
 
-    public Animal(String species, int weight, boolean bidedal, int weightOfFood, int areaNeeded){
+    public Animal(String species, int weight, String imgpath){
         this.species = species;
         this.weight = weight;
-        this.bidedal = bidedal;
-        this.weightOfFood = weightOfFood;
-        this.areaNeeded = areaNeeded;
+        this.imgpath = imgpath;
     }
 
     public final String getSpecies(){
@@ -22,16 +18,8 @@ abstract class Animal {
         return weight;
     }
 
-    public final boolean bidedal(){
-        return bidedal;
-    }
-
-    public final int weightOfFood(){
-        return weightOfFood;
-    }
-
-    public final int areaNeeded(){
-        return areaNeeded;
+    public final String imgpath(){
+        return imgpath;
     }
 
     public static void main(String[] args) {
