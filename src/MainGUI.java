@@ -36,6 +36,7 @@ public class MainGUI implements PropertyChangeListener {
         windowName = frameName;
         animalButtonContainer = animalButtonJPanel;
         menuContainer = menuJPanel;
+        dataStructureDemoContainer = new JPanel();
         initGUI();
     }
 
@@ -81,10 +82,11 @@ public class MainGUI implements PropertyChangeListener {
      * Initializations needed for container holding Demos in window
      */
     private void initDemosContainer() {
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.weightx = gbc.weighty = 1.0;
+//        GridBagConstraints gbc = new GridBagConstraints();
+//        gbc.weightx = gbc.weighty = 1.0;
 
         dataStructureDemoContainer.setLayout(new GridBagLayout());
+//        dataStructureDemoContainer.setLayout(new CardLayout());
     }
 
     /**
@@ -92,7 +94,6 @@ public class MainGUI implements PropertyChangeListener {
      * Sets the container section's dimensions
      */
     private void initContainers() {
-        dataStructureDemoContainer = new JPanel();
         dataStructureDemoContainer.setBackground(Color.red);
 
         GridBagConstraints animalButtonConstraints = new GridBagConstraints();
@@ -168,7 +169,7 @@ public class MainGUI implements PropertyChangeListener {
      * Starts playing all Demos from the start(index = 0)
      * once user hits the "Go" button.
      */
-    private void playDemos() {
+    void playDemos() {
         if (dataStructureDemoContainer.getComponentCount() != 0 || currentDemoIndex != 0) {
             removeActiveDemoFromContainer();
         }
@@ -176,58 +177,5 @@ public class MainGUI implements PropertyChangeListener {
         Demo currentDemo = dataStructureDemos[this.currentDemoIndex];
         addDemoToDemoContainer(currentDemo);
         currentDemo.play();
-    }
-
-    public static void main(String[] args) {
-        int height = 1000;
-        int width = 1000;
-        String mainGUIName = "Zoo";
-
-//      panel for the animal button section
-        JPanel animalButtonPanel = new JPanel();
-        animalButtonPanel.setBackground(Color.blue);
-
-//      panel for menu button section
-        JPanel menuPanel = new JPanel();
-        menuPanel.setBackground(Color.green);
-
-//      set up demo stuff for the show DS section
-        int numOfDemos = 2;
-        Demo[] demos = new Demo[numOfDemos];
-
-//      linked list show example(WIP)
-        JPanel llPanel0 = new JPanel();
-        llPanel0.setBackground(Color.yellow);
-        LinkedListDemo llDemo = new LinkedListDemo(llPanel0);
-        Chicken aChicken0 = new Chicken("Gallus gallus 00", 13, true, 3, 5);
-        Chicken aChicken1 = new Chicken("Gallus gallus 01", 13, true, 3, 5);
-        Chicken aChicken2 = new Chicken("Gallus gallus 02", 13, true, 3, 5);
-        Chicken aChicken3 = new Chicken("Gallus gallus 03", 13, true, 3, 5);
-        Chicken aChicken4 = new Chicken("Gallus gallus 04", 13, true, 3, 5);
-
-        llDemo.addAnimal(aChicken0);
-        llDemo.addAnimal(aChicken1);
-        llDemo.addAnimal(aChicken2);
-        llDemo.addAnimal(aChicken3);
-        llDemo.addAnimal(aChicken4);
-
-        demos[0] = llDemo;
-
-//      Testing adding another LL demo
-        JPanel llPanel1 = new JPanel();
-        llPanel1.setBackground(Color.magenta);
-        LinkedListDemo llDemo2 = new LinkedListDemo(llPanel1);
-        Chicken aChicken5 = new Chicken("LLDemo2: chicken5", 13, true, 3, 5);
-        Chicken aChicken6 = new Chicken("LLDemo2: chicken6", 13, true, 3, 5);
-
-        llDemo2.addAnimal(aChicken5);
-        llDemo2.addAnimal(aChicken6);
-
-        demos[1] = llDemo2;
-
-        MainGUI gui = new MainGUI(width, height, mainGUIName, demos, animalButtonPanel, menuPanel);
-
-//      Testing playing the Demos since no "Go" button has be implemented
-        gui.playDemos();
     }
 }

@@ -2,24 +2,24 @@
 abstract class Animal {
     private String species;
     private int weight;
-    private String imgpath;
+    private String imgPath;
 
-    public Animal(String species, int weight, String imgpath){
+    public Animal(String species, int weight, String imgPath){
         this.species = species;
         this.weight = weight;
-        this.imgpath = imgpath;
+        this.imgPath = imgPath;
     }
 
     public final String getSpecies(){
         return species;
     }
 
-    public final int weight(){
+    public final int getWeight(){
         return weight;
     }
 
-    public final String imgpath(){
-        return imgpath;
+    public final String getImgPath(){
+        return imgPath;
     }
 
     public static void main(String[] args) {

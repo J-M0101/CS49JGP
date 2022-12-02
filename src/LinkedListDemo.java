@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.File;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -17,6 +18,8 @@ public class LinkedListDemo extends Demo {
     public LinkedListDemo(JPanel panel) {
         super(panel);
         animalLabel = new JLabel();
+        animalLabel.setHorizontalTextPosition(JLabel.CENTER);
+        animalLabel.setVerticalTextPosition(JLabel.NORTH);
 
         animalDoublyLinkedList = new LinkedList<>();
         initButtons();
@@ -44,7 +47,7 @@ public class LinkedListDemo extends Demo {
         if (llIterator.hasNext()) {
             previousBtn.setEnabled(true);
             Animal currentAnimal = llIterator.next();
-            animalLabel.setText(currentAnimal.getSpecies());
+            updateLabelAnimal(currentAnimal);
         } else {
             nextBtn.setEnabled(false);
         }
@@ -53,22 +56,36 @@ public class LinkedListDemo extends Demo {
         if (llIterator.hasPrevious()) {
             nextBtn.setEnabled(true);
             Animal currentAnimal = llIterator.previous();
-            animalLabel.setText(currentAnimal.getSpecies());
+            updateLabelAnimal(currentAnimal);
         } else {
             previousBtn.setEnabled(false);
         }
     }
 
+    private void updateLabelAnimal(Animal animal) {
+        animalLabel.setText(animal.getSpecies());
+        animalLabel.setIcon(createImageIcon(animal.getImgPath()));
+    }
+
+    private ImageIcon createImageIcon(String imgPath) {
+//        File file =  new File(imgPath);
+//        if (!file.isFile()) {
+//            return new ImageIcon("./src/assets/images/imageNotFound.png");
+//        }
+        return new ImageIcon(imgPath);
+    }
+
     @Override
     void play() {
         Animal currAnimalLabel = animalDoublyLinkedList.getFirst();
-//        JLabel aniLabel = createAnimalLabel(currAnimalLabel);
         llIterator = animalDoublyLinkedList.listIterator();
-        animalLabel.setText(currAnimalLabel.getSpecies());
+        updateLabelAnimal(currAnimalLabel);
         getGUIContainer().setLayout(new BorderLayout());
         getGUIContainer().add(previousBtn, BorderLayout.LINE_START);
         getGUIContainer().add(animalLabel, BorderLayout.CENTER);
         getGUIContainer().add(nextBtn, BorderLayout.LINE_END);
         getGUIContainer().add(finishedBtn, BorderLayout.PAGE_END);
+        getGUIContainer().revalidate();
+        getGUIContainer().repaint();
     }
 }
