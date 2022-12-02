@@ -1,6 +1,7 @@
 import javax.swing.JPanel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 /**
  * abstract Class that will be needed to "show" data structure in GUI
@@ -53,5 +54,5 @@ abstract class Demo {
      * Use this method to do anything needed to set up and start
      * the demo GUI.
      */
-    abstract void play();
+    abstract void play(ArrayList<Animal> selectedAnimals);
 }

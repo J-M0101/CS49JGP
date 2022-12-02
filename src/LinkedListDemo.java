@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -17,29 +15,33 @@ public class LinkedListDemo extends Demo {
 
     public LinkedListDemo(JPanel panel) {
         super(panel);
+        finishedBtn = new JButton("Finish");
+        previousBtn = new JButton("Previous");
+        nextBtn = new JButton("Next");
+        setupButtonsListeners();
         animalLabel = new JLabel();
         animalLabel.setHorizontalTextPosition(JLabel.CENTER);
         animalLabel.setVerticalTextPosition(JLabel.NORTH);
 
         animalDoublyLinkedList = new LinkedList<>();
-        initButtons();
+
     }
 
     public void addAnimal(Animal animal) {
         animalDoublyLinkedList.add(animal);
     }
 
-    private void initButtons() {
-        finishedBtn = new JButton("Finish");
-        previousBtn = new JButton("Previous");
-        nextBtn = new JButton("Next");
-
+    private void setupButtonsListeners() {
         finishedBtn.addActionListener(this::finishedDemo);
         previousBtn.addActionListener(this::previousAnimal);
         nextBtn.addActionListener(this::nextAnimal);
     }
 
     private void finishedDemo(ActionEvent e) {
+        while (!this.animalDoublyLinkedList.isEmpty()) {
+            this.animalDoublyLinkedList.pop();
+        }
+        this.llIterator = null;
         setHasCompleted(true);
     }
 
@@ -68,17 +70,21 @@ public class LinkedListDemo extends Demo {
     }
 
     private ImageIcon createImageIcon(String imgPath) {
-//        File file =  new File(imgPath);
-//        if (!file.isFile()) {
-//            return new ImageIcon("./src/assets/images/imageNotFound.png");
-//        }
         return new ImageIcon(imgPath);
     }
 
+    private void prePlayDemo(ArrayList<Animal> selectedAnimals) {
+        for (Animal selectedAnimal : selectedAnimals) {
+            this.addAnimal(selectedAnimal);
+        }
+    }
+
+
     @Override
-    void play() {
+    void play(ArrayList<Animal> selectedAnimals) {
+        this.prePlayDemo(selectedAnimals);
         Animal currAnimalLabel = animalDoublyLinkedList.getFirst();
-        llIterator = animalDoublyLinkedList.listIterator();
+        this.llIterator = animalDoublyLinkedList.listIterator();
         updateLabelAnimal(currAnimalLabel);
         getGUIContainer().setLayout(new BorderLayout());
         getGUIContainer().add(previousBtn, BorderLayout.LINE_START);

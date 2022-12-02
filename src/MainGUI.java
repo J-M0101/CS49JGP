@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
@@ -18,7 +19,7 @@ public class MainGUI implements PropertyChangeListener {
     /**
      * Container to hold all animal selection buttons ex. "Chicken"
      */
-    private JPanel animalButtonContainer;
+    private AnimalButtonComponent animalButtonContainer;
     /**
      * Demos will be shown in this container
      */
@@ -26,9 +27,9 @@ public class MainGUI implements PropertyChangeListener {
     /**
      * Container to hold all menu buttons ex. "GO"
      */
-    private JPanel menuContainer;
+    private MenuComponent menuContainer;
 
-    public MainGUI(int width, int height, String frameName, Demo[] demos, JPanel animalButtonJPanel, JPanel menuJPanel) {
+    public MainGUI(int width, int height, String frameName, Demo[] demos, AnimalButtonComponent animalButtonJPanel, MenuComponent menuJPanel) {
         this.currentDemoIndex = 0;
         this.dataStructureDemos = demos;
         this.width = width;
@@ -38,6 +39,7 @@ public class MainGUI implements PropertyChangeListener {
         menuContainer = menuJPanel;
         dataStructureDemoContainer = new JPanel();
         initGUI();
+        setMenuButtonListeners();
     }
 
     public int getHeight() { return height; }
@@ -114,9 +116,27 @@ public class MainGUI implements PropertyChangeListener {
         menuConstraints.weighty = 0.10;
         menuConstraints.weightx = 0.5;
 
-        window.add(animalButtonContainer, animalButtonConstraints);
+        window.add(animalButtonContainer.getGuiContainer(), animalButtonConstraints);
         window.add(dataStructureDemoContainer, dataStructureDemoConstraints);
-        window.add(menuContainer, menuConstraints);
+        window.add(menuContainer.getGuiContainer(), menuConstraints);
+    }
+
+    private void setMenuButtonListeners() {
+        menuContainer.getGoBtn().addActionListener(this::onGo);
+        menuContainer.getSaveBtn().addActionListener(this::onSave);
+        menuContainer.getLoadBtn().addActionListener(this::onLoad);
+    }
+
+    private void onGo(ActionEvent e) {
+        if (!this.animalButtonContainer.getSelectedAnimal().isEmpty()) {
+            playDemos();
+        }
+    }
+    private void onSave(ActionEvent e) {
+
+    }
+    private void onLoad(ActionEvent e) {
+
     }
 
     /**
@@ -160,7 +180,7 @@ public class MainGUI implements PropertyChangeListener {
             if (currentDemoIndex < dataStructureDemos.length) {
                 Demo newDemo = dataStructureDemos[currentDemoIndex];
                 addDemoToDemoContainer(newDemo);
-                newDemo.play();
+                newDemo.play(this.animalButtonContainer.getSelectedAnimal());
             }
         }
     }
@@ -170,12 +190,12 @@ public class MainGUI implements PropertyChangeListener {
      * once user hits the "Go" button.
      */
     void playDemos() {
-        if (dataStructureDemoContainer.getComponentCount() != 0 || currentDemoIndex != 0) {
+        if ((dataStructureDemoContainer.getComponentCount() != 0 || currentDemoIndex != 0) && currentDemoIndex < dataStructureDemos.length) {
             removeActiveDemoFromContainer();
         }
         this.currentDemoIndex = 0;
         Demo currentDemo = dataStructureDemos[this.currentDemoIndex];
         addDemoToDemoContainer(currentDemo);
-        currentDemo.play();
+        currentDemo.play(this.animalButtonContainer.getSelectedAnimal());
     }
 }
