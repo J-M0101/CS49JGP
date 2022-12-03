@@ -11,7 +11,7 @@ public class App {
 
 //      animals that will be used when displaying data structures
         Chicken aChicken = new Chicken("Gallus gallus 00", 13, chickenImgPath);
-        Babirusa aBabirusa = new Babirusa("A PIG thing", 130, anotherImg);
+        Babirusa aBabirusa = new Babirusa("An Indonesian Island swamp pig", 130, anotherImg);
 
 
 //      panel for the animal button section
