@@ -16,15 +16,16 @@ public class App {
 
 //      panel for the animal button section
         JPanel animalButtonPanel = new JPanel();
+        Color selectedAnimalButtonColor = Color.green;
         animalButtonPanel.setLayout(new BoxLayout(animalButtonPanel, BoxLayout.Y_AXIS));
-        animalButtonPanel.setBackground(Color.blue);
-        AnimalButtonComponent animalButtons = new AnimalButtonComponent(animalButtonPanel, 10);
+//        animalButtonPanel.setBackground(Color.blue);
+        AnimalButtonComponent animalButtons = new AnimalButtonComponent(animalButtonPanel, 10, selectedAnimalButtonColor);
         animalButtons.addAnimal(aBabirusa);
         animalButtons.addAnimal(aChicken);
 
 //      panel for menu button section
         JPanel menuPanel = new JPanel();
-        menuPanel.setBackground(Color.green);
+//        menuPanel.setBackground(Color.green);
         MenuComponent menu = new MenuComponent(menuPanel);
 
 //      set up demo stuff for the show DS section

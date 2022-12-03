@@ -5,6 +5,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 public class MainGUI implements PropertyChangeListener {
     private JFrame window;
@@ -133,10 +134,14 @@ public class MainGUI implements PropertyChangeListener {
         }
     }
     private void onSave(ActionEvent e) {
-
+        this.menuContainer.save(this.animalButtonContainer.getSelectedAnimal());
     }
     private void onLoad(ActionEvent e) {
-
+        ArrayList<String> animalToLoad = this.menuContainer.load();
+        this.animalButtonContainer.resetToDefaultState();
+        for (String animalClassNames : animalToLoad) {
+            this.animalButtonContainer.onAnimalSelection(animalClassNames);
+        }
     }
 
     /**
