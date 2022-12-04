@@ -1,17 +1,23 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class App {
     public static void main(String[] args) {
         int height = 1000;
         int width = 1000;
         String mainGUIName = "Zoo";
-        String chickenImgPath = "A:/SJSU/Fall 22/CS49J Programs/Team Project/Project/.java/CS49JGP/src/assets/images/chicken.jpg";
-        String anotherImg = "A:/SJSU/Fall 22/CS49J Programs/Team Project/Project/.java/CS49JGP/src/assets/images/Babirusa.jpg";
+        String chickenImgPath = "./src/assets/images/chicken.jpg";
+        String anotherImg = "./src/assets/images/chicken.jpg";
+        String catImgPath = "./src/assets/images/cat.jpg";
+        String pandaImgPath = "./src/assets/images/panda.jpg";
+
 
 //      animals that will be used when displaying data structures
         Chicken aChicken = new Chicken("Gallus gallus 00", 13, chickenImgPath);
         Babirusa aBabirusa = new Babirusa("An Indonesian Island swamp pig", 130, anotherImg);
+        Cat aCat = new Cat("Felis catus", 10, catImgPath);
+        Panda aPanda = new Panda("Ailuropoda melanoleuca", 250, pandaImgPath);
 
 
 //      panel for the animal button section
@@ -22,11 +28,17 @@ public class App {
         AnimalButtonComponent animalButtons = new AnimalButtonComponent(animalButtonPanel, 10, selectedAnimalButtonColor);
         animalButtons.addAnimal(aBabirusa);
         animalButtons.addAnimal(aChicken);
+        animalButtons.addAnimal(aCat);
+        animalButtons.addAnimal(aPanda);
 
+//      save/load arguments
+        String delimiter = ",";
+        String fileName = "file.txt";
+        String dirPath = "./src/assets/saves/";
+        AppDataStrategy saveLoadStrategy = new TextDataStrategy(delimiter, dirPath, fileName);
 //      panel for menu button section
         JPanel menuPanel = new JPanel();
-//        menuPanel.setBackground(Color.green);
-        MenuComponent menu = new MenuComponent(menuPanel);
+        MenuComponent menu = new MenuComponent(menuPanel, saveLoadStrategy);
 
 //      set up demo stuff for the show DS section
         int numOfDemos = 2;
@@ -47,5 +59,10 @@ public class App {
         demos[1] = SPanel;
 
         MainGUI gui = new MainGUI(width, height, mainGUIName, demos, animalButtons, menu);
+
+//      generates a random farm ID
+        Random rand = new Random();
+        int random_int = rand.nextInt(1000);
+        System.out.println("Your farm ID is: " + random_int);
     }
 }
