@@ -9,10 +9,15 @@ public class App {
         String mainGUIName = "Zoo";
         String chickenImgPath = "./src/assets/images/chicken.jpg";
         String anotherImg = "./src/assets/images/chicken.jpg";
+        String catImgPath = "./src/assets/images/cat.jpg";
+        String pandaImgPath = "./src/assets/images/panda.jpg";
+
 
 //      animals that will be used when displaying data structures
         Chicken aChicken = new Chicken("Gallus gallus 00", 13, chickenImgPath);
         Babirusa aBabirusa = new Babirusa("An Indonesian Island swamp pig", 130, anotherImg);
+        Cat aCat = new Cat("Felis catus", 10, catImgPath);
+        Panda aPanda = new Panda("Ailuropoda melanoleuca", 250, pandaImgPath);
 
 
 //      panel for the animal button section
@@ -23,6 +28,8 @@ public class App {
         AnimalButtonComponent animalButtons = new AnimalButtonComponent(animalButtonPanel, 10, selectedAnimalButtonColor);
         animalButtons.addAnimal(aBabirusa);
         animalButtons.addAnimal(aChicken);
+        animalButtons.addAnimal(aCat);
+        animalButtons.addAnimal(aPanda);
 
 //      save/load arguments
         String delimiter = ",";
