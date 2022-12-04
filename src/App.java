@@ -6,8 +6,8 @@ public class App {
         int height = 1000;
         int width = 1000;
         String mainGUIName = "Zoo";
-        String chickenImgPath = "./src/assets/images/chicken.jpg";
-        String anotherImg = "./src/assets/images/chicken.jpg";
+        String chickenImgPath = "A:/SJSU/Fall 22/CS49J Programs/Team Project/Project/.java/CS49JGP/src/assets/images/chicken.jpg";
+        String anotherImg = "A:/SJSU/Fall 22/CS49J Programs/Team Project/Project/.java/CS49JGP/src/assets/images/Babirusa.jpg";
 
 //      animals that will be used when displaying data structures
         Chicken aChicken = new Chicken("Gallus gallus 00", 13, chickenImgPath);
@@ -40,11 +40,11 @@ public class App {
         demos[0] = llDemo;
 
 //      Testing adding another LL demo
-        JPanel llPanel1 = new JPanel();
-        llPanel1.setBackground(Color.magenta);
-        LinkedListDemo llDemo2 = new LinkedListDemo(llPanel1);
+        JPanel SPanel0 = new JPanel();
+        SPanel0.setBackground(Color.white);
+        StackDemo SPanel = new StackDemo(SPanel0);
 
-        demos[1] = llDemo2;
+        demos[1] = SPanel;
 
         MainGUI gui = new MainGUI(width, height, mainGUIName, demos, animalButtons, menu);
     }
