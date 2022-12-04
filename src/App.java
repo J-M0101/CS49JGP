@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class App {
     public static void main(String[] args) {
@@ -47,5 +48,10 @@ public class App {
         demos[1] = llDemo2;
 
         MainGUI gui = new MainGUI(width, height, mainGUIName, demos, animalButtons, menu);
+
+//      generates a random farm ID
+        Random rand = new Random();
+        int random_int = rand.nextInt(1000);
+        System.out.println("Your farm ID is: " + random_int);
     }
 }
