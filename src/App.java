@@ -24,10 +24,14 @@ public class App {
         animalButtons.addAnimal(aBabirusa);
         animalButtons.addAnimal(aChicken);
 
+//      save/load arguments
+        String delimiter = ",";
+        String fileName = "file.txt";
+        String dirPath = "./src/assets/saves/";
+        AppDataStrategy saveLoadStrategy = new TextDataStrategy(delimiter, dirPath, fileName);
 //      panel for menu button section
         JPanel menuPanel = new JPanel();
-//        menuPanel.setBackground(Color.green);
-        MenuComponent menu = new MenuComponent(menuPanel);
+        MenuComponent menu = new MenuComponent(menuPanel, saveLoadStrategy);
 
 //      set up demo stuff for the show DS section
         int numOfDemos = 2;
