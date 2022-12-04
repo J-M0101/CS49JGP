@@ -53,8 +53,8 @@ public class StackDemo extends Demo {
     void play(ArrayList<Animal> selectedAnimals) {
         //This will be called to push animals onto stack
         this.ArrayToStack(selectedAnimals);
-        Animal currAnimalLabel = animalStack.pop();
-        updateLabelAnimal(currAnimalLabel);
+        Animal PresentAnimal = animalStack.pop();
+        updateLabelAnimal(PresentAnimal);
         getGUIContainer().setLayout(new BorderLayout());
         getGUIContainer().add(animalLabel, BorderLayout.CENTER);
         getGUIContainer().add(nextBtn, BorderLayout.PAGE_END);
