@@ -1,18 +1,17 @@
 import javax.swing.*;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MenuComponent {
     private final JPanel guiContainer;
     private final JButton goBtn;
     private final JButton saveBtn;
     private final JButton loadBtn;
+    private final AppDataStrategy readWriteStrategy;
 
-    public MenuComponent(JPanel guiContainer) {
+    public MenuComponent(JPanel guiContainer, AppDataStrategy saveLoadStrategy) {
         this.guiContainer = guiContainer;
+        this.readWriteStrategy = saveLoadStrategy;
         goBtn = new JButton("Go!");
         saveBtn = new JButton("save");
         loadBtn = new JButton("load");
@@ -39,41 +38,19 @@ public class MenuComponent {
     }
 
     public void save(ArrayList<Animal> selectedAnimals) {
-        String delimiter = ",";
-        String fileName = "file.txt";
-        String filePath = "./src/assets/saves/";
-        String completeFilePathAndName = String.format("%s%s",filePath, fileName);
-        try (PrintWriter out = new PrintWriter(completeFilePathAndName)) {
-            for (Animal selectedAnimal : selectedAnimals) {
-                String saveFormat = String.format("%s,", selectedAnimal.getClass().getName());
-                out.print(saveFormat);
-            }
-
+        try {
+        this.readWriteStrategy.save(selectedAnimals);
         } catch (FileNotFoundException e) {
-            throw  new RuntimeException(e);
+            System.err.printf("Error: %s", e.getMessage());
         }
     }
 
     public ArrayList<String> load() {
-        ArrayList<String> animalsToLoad = new ArrayList<>();
-        String delimiter = ",";
-        String fileName = "file.txt";
-        String filePath = "./src/assets/saves/";
-        String completeFilePathAndName = String.format("%s%s",filePath, fileName);
-        File inputFile = new File(completeFilePathAndName);
-        try (Scanner in = new Scanner(inputFile)) {
-            while (in.hasNextLine()) {
-                String line = in.nextLine();
-                Scanner lineReader = new Scanner(line);
-                lineReader.useDelimiter(delimiter);
-                while (lineReader.hasNext()) {
-                    String animalClassName = lineReader.next();
-                    animalsToLoad.add(animalClassName);
-                }
-            }
+        try {
+            return this.readWriteStrategy.load();
         } catch (FileNotFoundException e) {
-            throw  new RuntimeException(e);
+            System.err.printf("Error: %s", e.getMessage());
+            return new ArrayList<>();
         }
-        return animalsToLoad;
     }
 }

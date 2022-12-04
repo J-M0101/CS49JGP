@@ -18,13 +18,23 @@ public class LinkedListDemo extends Demo {
         finishedBtn = new JButton("Finish");
         previousBtn = new JButton("Previous");
         nextBtn = new JButton("Next");
-        setupButtonsListeners();
         animalLabel = new JLabel();
-        animalLabel.setHorizontalTextPosition(JLabel.CENTER);
-        animalLabel.setVerticalTextPosition(JLabel.NORTH);
-
         animalDoublyLinkedList = new LinkedList<>();
 
+        this.setupButtonsListeners();
+        this.initGUI();
+    }
+
+    private void initGUI() {
+        animalLabel.setHorizontalTextPosition(JLabel.CENTER);
+        animalLabel.setVerticalTextPosition(JLabel.NORTH);
+        getGUIContainer().setLayout(new BorderLayout());
+        getGUIContainer().add(previousBtn, BorderLayout.LINE_START);
+        getGUIContainer().add(animalLabel, BorderLayout.CENTER);
+        getGUIContainer().add(nextBtn, BorderLayout.LINE_END);
+        getGUIContainer().add(finishedBtn, BorderLayout.PAGE_END);
+        getGUIContainer().revalidate();
+        getGUIContainer().repaint();
     }
 
     public void addAnimal(Animal animal) {
@@ -42,6 +52,7 @@ public class LinkedListDemo extends Demo {
             this.animalDoublyLinkedList.pop();
         }
         this.llIterator = null;
+        this.enableButtons();
         setHasCompleted(true);
     }
 
@@ -50,23 +61,23 @@ public class LinkedListDemo extends Demo {
             previousBtn.setEnabled(true);
             Animal currentAnimal = llIterator.next();
             updateLabelAnimal(currentAnimal);
-        } else {
-            nextBtn.setEnabled(false);
         }
+        this.updateNextButtonEnable(this.llIterator.hasNext());
     }
     private void previousAnimal(ActionEvent e) {
         if (llIterator.hasPrevious()) {
             nextBtn.setEnabled(true);
             Animal currentAnimal = llIterator.previous();
             updateLabelAnimal(currentAnimal);
-        } else {
-            previousBtn.setEnabled(false);
         }
+        this.updatePreviousButtonEnable(this.llIterator.hasPrevious());
     }
 
     private void updateLabelAnimal(Animal animal) {
         animalLabel.setText(animal.getSpecies());
         animalLabel.setIcon(createImageIcon(animal.getImgPath()));
+        getGUIContainer().revalidate();
+        getGUIContainer().repaint();
     }
 
     private ImageIcon createImageIcon(String imgPath) {
@@ -79,19 +90,33 @@ public class LinkedListDemo extends Demo {
         }
     }
 
+    private void enableButtons() {
+        this.nextBtn.setEnabled(true);
+        this.previousBtn.setEnabled(true);
+    }
+
+    private void updateNextButtonEnable(boolean isEnabled) {
+        this.nextBtn.setEnabled(isEnabled);
+    }
+    private void updatePreviousButtonEnable(boolean isEnabled) {
+        this.previousBtn.setEnabled(isEnabled);
+    }
+
+    private void setupFirstAnimal() {
+        if (this.animalDoublyLinkedList.isEmpty()) {
+            this.animalLabel.setText("No animal selected...");
+        } else {
+            Animal currAnimalLabel = this.llIterator.next();
+            updateLabelAnimal(currAnimalLabel);
+            this.updateNextButtonEnable(this.llIterator.hasNext());
+            this.updatePreviousButtonEnable(false);
+        }
+    }
 
     @Override
     void play(ArrayList<Animal> selectedAnimals) {
         this.prePlayDemo(selectedAnimals);
-        Animal currAnimalLabel = animalDoublyLinkedList.getFirst();
         this.llIterator = animalDoublyLinkedList.listIterator();
-        updateLabelAnimal(currAnimalLabel);
-        getGUIContainer().setLayout(new BorderLayout());
-        getGUIContainer().add(previousBtn, BorderLayout.LINE_START);
-        getGUIContainer().add(animalLabel, BorderLayout.CENTER);
-        getGUIContainer().add(nextBtn, BorderLayout.LINE_END);
-        getGUIContainer().add(finishedBtn, BorderLayout.PAGE_END);
-        getGUIContainer().revalidate();
-        getGUIContainer().repaint();
+        this.setupFirstAnimal();
     }
 }

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class App {
     public static void main(String[] args) {
@@ -23,10 +24,14 @@ public class App {
         animalButtons.addAnimal(aBabirusa);
         animalButtons.addAnimal(aChicken);
 
+//      save/load arguments
+        String delimiter = ",";
+        String fileName = "file.txt";
+        String dirPath = "./src/assets/saves/";
+        AppDataStrategy saveLoadStrategy = new TextDataStrategy(delimiter, dirPath, fileName);
 //      panel for menu button section
         JPanel menuPanel = new JPanel();
-//        menuPanel.setBackground(Color.green);
-        MenuComponent menu = new MenuComponent(menuPanel);
+        MenuComponent menu = new MenuComponent(menuPanel, saveLoadStrategy);
 
 //      set up demo stuff for the show DS section
         int numOfDemos = 2;
@@ -47,5 +52,10 @@ public class App {
         demos[1] = llDemo2;
 
         MainGUI gui = new MainGUI(width, height, mainGUIName, demos, animalButtons, menu);
+
+//      generates a random farm ID
+        Random rand = new Random();
+        int random_int = rand.nextInt(1000);
+        System.out.println("Your farm ID is: " + random_int);
     }
 }
