@@ -16,20 +16,18 @@ public class TextDataStrategy implements AppDataStrategy {
     }
 
     @Override
-    public void save(ArrayList<Animal> selectedAnimals) {
+    public void save(ArrayList<Animal> selectedAnimals) throws FileNotFoundException {
         String completeFilePathAndName = String.format("%s%s",this.dirPath, this.fileName);
         try (PrintWriter out = new PrintWriter(completeFilePathAndName)) {
             for (Animal selectedAnimal : selectedAnimals) {
                 String saveFormat = String.format("%s,", selectedAnimal.getClass().getName());
                 out.print(saveFormat);
             }
-        } catch (FileNotFoundException e) {
-            throw  new RuntimeException(e);
         }
     }
 
     @Override
-    public ArrayList<String> load() {
+    public ArrayList<String> load() throws FileNotFoundException {
         ArrayList<String> animalsToLoad = new ArrayList<>();
         String completeFilePathAndName = String.format("%s%s",this.dirPath, this.fileName);
         File inputFile = new File(completeFilePathAndName);
@@ -43,8 +41,6 @@ public class TextDataStrategy implements AppDataStrategy {
                     animalsToLoad.add(animalClassName);
                 }
             }
-        } catch (FileNotFoundException e) {
-            throw  new RuntimeException(e);
         }
         return animalsToLoad;
     }

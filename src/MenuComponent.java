@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class MenuComponent {
@@ -37,10 +38,19 @@ public class MenuComponent {
     }
 
     public void save(ArrayList<Animal> selectedAnimals) {
+        try {
         this.readWriteStrategy.save(selectedAnimals);
+        } catch (FileNotFoundException e) {
+            System.err.printf("Error: %s", e.getMessage());
+        }
     }
 
     public ArrayList<String> load() {
-        return this.readWriteStrategy.load();
+        try {
+            return this.readWriteStrategy.load();
+        } catch (FileNotFoundException e) {
+            System.err.printf("Error: %s", e.getMessage());
+            return new ArrayList<>();
+        }
     }
 }
