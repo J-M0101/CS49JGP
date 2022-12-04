@@ -1,5 +1,6 @@
 
-abstract class Animal {
+abstract class Animal
+{
     private String species;
     private int weight;
     private String imgPath;
@@ -22,7 +23,4 @@ abstract class Animal {
         return imgPath;
     }
 
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
 }
