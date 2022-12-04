@@ -8,23 +8,28 @@ public class App {
         String mainGUIName = "Zoo";
         String chickenImgPath = "./src/assets/images/chicken.jpg";
         String anotherImg = "./src/assets/images/chicken.jpg";
+        String catImgPath = "./src/assets/images/cat.jpg";
 
 //      animals that will be used when displaying data structures
         Chicken aChicken = new Chicken("Gallus gallus 00", 13, chickenImgPath);
         Babirusa aBabirusa = new Babirusa("An Indonesian Island swamp pig", 130, anotherImg);
+        Cat aCat = new Cat("Felis catus", 10, catImgPath);
 
 
 //      panel for the animal button section
         JPanel animalButtonPanel = new JPanel();
         Color selectedAnimalButtonColor = Color.green;
         animalButtonPanel.setLayout(new BoxLayout(animalButtonPanel, BoxLayout.Y_AXIS));
+
 //        animalButtonPanel.setBackground(Color.blue);
         AnimalButtonComponent animalButtons = new AnimalButtonComponent(animalButtonPanel, 10, selectedAnimalButtonColor);
         animalButtons.addAnimal(aBabirusa);
         animalButtons.addAnimal(aChicken);
+        animalButtons.addAnimal(aCat);
 
 //      panel for menu button section
         JPanel menuPanel = new JPanel();
+
 //        menuPanel.setBackground(Color.green);
         MenuComponent menu = new MenuComponent(menuPanel);
 
