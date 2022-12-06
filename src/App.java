@@ -8,7 +8,7 @@ public class App {
         int width = 1000;
         String mainGUIName = "Zoo";
         String chickenImgPath = "./src/assets/images/chicken.jpg";
-        String anotherImg = "./src/assets/images/chicken.jpg";
+        String anotherImg = "./src/assets/images/Babirusa.jpg";
         String catImgPath = "./src/assets/images/cat.jpg";
         String pandaImgPath = "./src/assets/images/panda.jpg";
 
@@ -41,7 +41,7 @@ public class App {
         MenuComponent menu = new MenuComponent(menuPanel, saveLoadStrategy);
 
 //      set up demo stuff for the show DS section
-        int numOfDemos = 2;
+        int numOfDemos = 3;
         Demo[] demos = new Demo[numOfDemos];
 
 //      linked list show example
@@ -59,6 +59,13 @@ public class App {
         demos[1] = SPanel;
 
         MainGUI gui = new MainGUI(width, height, mainGUIName, demos, animalButtons, menu);
+
+        // Priority Queue show example
+        JPanel pqPanel0 = new JPanel();
+        pqPanel0.setBackground(Color.green);
+        PriorityQueueDemo pqDemo = new PriorityQueueDemo(pqPanel0);
+
+        demos[2] = pqDemo;
 
 //      generates a random farm ID
         Random rand = new Random();
