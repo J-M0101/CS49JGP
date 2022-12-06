@@ -3,10 +3,22 @@ import java.awt.*;
 import java.util.Random;
 
 public class App {
+
+    // Recursive method to show total zoo farm weight
+    public static int sumOfWeight(int[] a, int n) {
+        if (n == 0)
+            return a[n];
+        else
+            return a[n] + sumOfWeight(a, n - 1);
+    }
+
     public static void main(String[] args) {
         int height = 1000;
         int width = 1000;
-        String mainGUIName = "Zoo";
+        // generates a random farm ID
+        Random rand = new Random();
+        int random_int = rand.nextInt(1000);
+
         String chickenImgPath = "./src/assets/images/chicken.jpg";
         String anotherImg = "./src/assets/images/Babirusa.jpg";
         String catImgPath = "./src/assets/images/cat.jpg";
@@ -18,6 +30,14 @@ public class App {
         Babirusa aBabirusa = new Babirusa("An Indonesian Island swamp pig", 230, anotherImg);
         Cat aCat = new Cat("Felis catus", 10, catImgPath);
         Panda aPanda = new Panda("Ailuropoda melanoleuca", 250, pandaImgPath);
+
+        // Weight of each animal to pass in recursive method
+        int[] a = {aChicken.getWeight(),aBabirusa.getWeight(), aCat.getWeight(), aPanda.getWeight()};
+        int sum = sumOfWeight(a, a.length-1);
+
+        String mainGUIName = "Your farm ID is: " + random_int + "... Welcome to the zoo farm. Total animal weight is "
+                + sum + "lbs.";
+
 
 
 //      panel for the animal button section
@@ -67,10 +87,6 @@ public class App {
 
         MainGUI gui = new MainGUI(width, height, mainGUIName, demos, animalButtons, menu);
 
-
-//      generates a random farm ID
-        Random rand = new Random();
-        int random_int = rand.nextInt(1000);
-        System.out.println("Your farm ID is: " + random_int);
     }
+
 }
