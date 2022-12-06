@@ -15,7 +15,7 @@ public class App {
 
 //      animals that will be used when displaying data structures
         Chicken aChicken = new Chicken("Gallus gallus 00", 13, chickenImgPath);
-        Babirusa aBabirusa = new Babirusa("An Indonesian Island swamp pig", 130, anotherImg);
+        Babirusa aBabirusa = new Babirusa("An Indonesian Island swamp pig", 230, anotherImg);
         Cat aCat = new Cat("Felis catus", 10, catImgPath);
         Panda aPanda = new Panda("Ailuropoda melanoleuca", 250, pandaImgPath);
 
@@ -58,14 +58,15 @@ public class App {
 
         demos[1] = SPanel;
 
-        MainGUI gui = new MainGUI(width, height, mainGUIName, demos, animalButtons, menu);
-
         // Priority Queue show example
         JPanel pqPanel0 = new JPanel();
         pqPanel0.setBackground(Color.green);
         PriorityQueueDemo pqDemo = new PriorityQueueDemo(pqPanel0);
 
         demos[2] = pqDemo;
+
+        MainGUI gui = new MainGUI(width, height, mainGUIName, demos, animalButtons, menu);
+
 
 //      generates a random farm ID
         Random rand = new Random();

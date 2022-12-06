@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 import java.util.Comparator;
 
 
-public class PriorityQueueDemo extends Demo implements Comparator <Animal>
+public class PriorityQueueDemo extends Demo
 {
     private final PriorityQueue<Animal> animalPriorityQueue;
     private final JButton nextBtn;
@@ -21,7 +21,7 @@ public class PriorityQueueDemo extends Demo implements Comparator <Animal>
     public PriorityQueueDemo(JPanel panel)
     {
         super(panel);
-        animalPriorityQueue = new PriorityQueue<>();
+        animalPriorityQueue = new PriorityQueue<>(new weightComparator());
         nextBtn = new JButton("Next");
         animalLabel = new JLabel();
         animalLabel.setHorizontalTextPosition(JLabel.CENTER);
@@ -33,7 +33,7 @@ public class PriorityQueueDemo extends Demo implements Comparator <Animal>
     {
         if(!animalPriorityQueue.isEmpty())
         {
-            updateLabelAnimal(animalPriorityQueue.peek());
+            updateLabelAnimal(animalPriorityQueue.poll());
         }
         else
         {
@@ -48,16 +48,14 @@ public class PriorityQueueDemo extends Demo implements Comparator <Animal>
 
     private void ArrayToPriorityQueue(ArrayList<Animal> selectedAnimals)
     {
-        for (Animal animal : selectedAnimals) {
-            animalPriorityQueue.add(animal);
-        }
+        animalPriorityQueue.addAll(selectedAnimals);
     }
 
     @Override
     void play(ArrayList<Animal> selectedAnimals)
     {
         this.ArrayToPriorityQueue(selectedAnimals);
-        Animal PresentAnimal = animalPriorityQueue.peek();
+        Animal PresentAnimal = animalPriorityQueue.poll();
         updateLabelAnimal(PresentAnimal);
         getGUIContainer().setLayout(new BorderLayout());
         getGUIContainer().add(animalLabel, BorderLayout.CENTER);
@@ -65,16 +63,6 @@ public class PriorityQueueDemo extends Demo implements Comparator <Animal>
         getGUIContainer().revalidate();
         getGUIContainer().repaint();
 
-    }
-
-    // Compare weight of animals from lowest to highest.
-    @Override
-    public int compare(Animal o1, Animal o2)
-    {
-        if (o1.getWeight() != o2.getWeight())
-            return o1.getWeight() - o2.getWeight();
-        else
-            return o1.getSpecies().compareTo(o2.getSpecies());
     }
 
 }
