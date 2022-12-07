@@ -1,3 +1,9 @@
+/**
+ * Main class that runs the GUI program. Has GO, SAVE, and LOAD buttons that shows animals selected in
+ * a linked list, stack, and priority queue. Title has your random farm ID and shows the total weight of all animals
+ * in farm using recursion.
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
@@ -56,6 +62,7 @@ public class App {
         String fileName = "file.txt";
         String dirPath = "./src/assets/saves/";
         AppDataStrategy saveLoadStrategy = new TextDataStrategy(delimiter, dirPath, fileName);
+
 //      panel for menu button section
         JPanel menuPanel = new JPanel();
         MenuComponent menu = new MenuComponent(menuPanel, saveLoadStrategy);
