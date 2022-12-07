@@ -1,5 +1,8 @@
+interface Characteristics{
+    public void animalSound();
+}
 
-abstract class Animal
+abstract class Animal implements Characteristics
 {
     private String species;
     private int weight;

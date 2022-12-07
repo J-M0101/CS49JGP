@@ -41,7 +41,8 @@ public class MenuComponent {
         try {
         this.readWriteStrategy.save(selectedAnimals);
         } catch (FileNotFoundException e) {
-            System.err.printf("Error: %s", e.getMessage());
+            System.err.printf("Error: %s %n", e.getMessage());
+            System.err.println("Confirm directory path shown exits");
         }
     }
 
@@ -49,7 +50,8 @@ public class MenuComponent {
         try {
             return this.readWriteStrategy.load();
         } catch (FileNotFoundException e) {
-            System.err.printf("Error: %s", e.getMessage());
+            System.err.printf("Error: %s %n", e.getMessage());
+            System.err.println("Confirm directory path shown exits and make a save first...");
             return new ArrayList<>();
         }
     }
