@@ -97,7 +97,7 @@ public class MainGUI implements PropertyChangeListener {
      * Sets the container section's dimensions
      */
     private void initContainers() {
-        dataStructureDemoContainer.setBackground(Color.red);
+        dataStructureDemoContainer.setBackground(Color.lightGray);
 
         GridBagConstraints animalButtonConstraints = new GridBagConstraints();
         animalButtonConstraints.fill = GridBagConstraints.BOTH;
