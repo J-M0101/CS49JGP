@@ -65,9 +65,10 @@ JSONDataStrategy
   */
 
 menuComponent
-Builds the Go, Save, Load buttons on GUI
+* Builds the Go, Save, Load buttons on GUI
 saves
 animals selected can be saved and catches errors
 Load
 Animals that were saved are loaded and catches errors
+
 
