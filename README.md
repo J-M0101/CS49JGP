@@ -1,3 +1,7 @@
+## GITHUB Link
+
+https://github.com/J-M0101/CS49JGP
+
 ## Getting Started
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
