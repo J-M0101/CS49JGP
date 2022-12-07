@@ -9,7 +9,7 @@ Step 2: Go to https://github.com/J-M0101/CS49JGP to clone project
 
 Step 3: Open up CS49JGP folder using intelliJ
 
-Step 4; In intelliJ click on src folder 
+Step 4: In intelliJ click on src folder 
 
 Step 5: Click on App.java on the left hand side menu
 
