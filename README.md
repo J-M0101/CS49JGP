@@ -21,22 +21,22 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 ## Documentation
 StackDemo: A class that utilizes a Jpanel as the parameter to display a data structure .
 
-* Has three private instance variables stack, button, and Jlabel. 
-* The constructor sets the attributes for the class. Sets a new Stack, Button, Label, and position in the GUI.
-* ArrayToStack takes in an ArrayList parameter and through a for loop will push each item into a stack data structure.
-* Play is used to call all the different methods to display the data to the GUI.
+    * Has three private instance variables stack, button, and Jlabel. 
+    * The constructor sets the attributes for the class. Sets a new Stack, Button, Label, and position in the GUI.
+    * ArrayToStack takes in an ArrayList parameter and through a for loop will push each item into a stack data structure.
+    * Play is used to call all the different methods to display the data to the GUI.
     
 Babirusa: Babirusa inherits from the animal class. 
 
 MainGUI: A Class that creates the structure of the main GUI. Implements the PropertyChangeListener.
 
-* Has 9 private instance variables window, height, width, windowname, an array that will hold all the demos, buttons, and components. 
-* InitGUI: Initialize the whole root GUI
-* initWindow: Initialize GUI window
-* initDemosContainer: Initializations needed for container holding Demos in window
-* initContainers: initializes the window GUI structure layout sets the container section's dimensions
-* propertyChange: Logic to execute when registered property(s) have changed. As soon as a demo's hasCompleted status changes to true will remove it and add/play the next Demo.
-* playDemos: Starts playing all Demos from the start(index = 0)  once the user hits the "Go" button.
+    * Has 9 private instance variables window, height, width, windowname, an array that will hold all the demos, buttons, and components. 
+    * InitGUI: Initialize the whole root GUI
+    * initWindow: Initialize GUI window
+    * initDemosContainer: Initializations needed for container holding Demos in window
+    * initContainers: initializes the window GUI structure layout sets the container section's dimensions
+    * propertyChange: Logic to execute when registered property(s) have changed. As soon as a demo's hasCompleted status changes to true will remove it and add/play the next Demo.
+    * playDemos: Starts playing all Demos from the start(index = 0)  once the user hits the "Go" button.
 
 weightComparator
 
@@ -73,4 +73,49 @@ saves
 animals selected can be saved and catches errors
 Load
 Animals that were saved are loaded and catches errors
+
+
+* Demo:  Abstract Class that will be needed to "show" data structure in GUI
+
+   - getGUIContainer: GUI for showing the data structure. Use this as the canvas for adding components and showing Demo GUI stuff when the play() method is invoked.
+
+   - getHasCompleted: returns Demo current completion status
+
+   - setHasCompleted: hasCompleted setter. If overriding make sure to fire property has changed in the overridden method.
+
+   - Play: Plays the "show data structure". Use this method to do anything needed to set up and start the demo GUI.
+
+* LLDEMO: Linked list demo that shows the animals in gui
+
+   - initGUI: initializes the linked list demo GUI and adds the components to panel
+
+   - finishedDemo: signals demo has completed and resets demo to default settings
+
+   - updateLabelAnimal: updates the current animal label
+
+   - prePlayDemo: sets up settings that need to be set up before being played
+
+   - setupFirstAnimal: sets up the first animal label show in demo
+
+   - Play: plays the linked list demo
+* appDataStrategy:  interface to allow multiple types of save/load file formats to be created and plugged in.
+
+   - Save: the save method
+
+   - Load: the load method
+
+   - TextDataStrategy: used to save/load app data from a .txt file
+
+   - Save: saves user selected animals to .txt file
+
+   - Load: loads previously save user selected animals from .txt file
+* Cat: Cat inherits from animal class
+* Chicken: Chicken inherits from animal class
+* Panda: Panda inherits from animal class
+* AnimalButton: Data class that holds data info related to a specific animal buttons
+   - isSelected: checks if animal was selected
+   
+   - updateButtonSelectionColor: updates the button’s color state
+   
+   - toggleSelectionState: toggles animal buttons selected state
 
