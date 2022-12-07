@@ -22,11 +22,8 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 StackDemo: A class that utilizes a Jpanel as the parameter to display a data structure .
 
     * Has three private instance variables stack, button, and Jlabel. 
-    
     * The constructor sets the attributes for the class. Sets a new Stack, Button, Label, and position in the GUI.
-    
     * ArrayToStack takes in an ArrayList parameter and through a for loop will push each item into a stack data structure.
-    
     * Play is used to call all the different methods to display the data to the GUI.
     
 Babirusa: Babirusa inherits from the animal class. 
@@ -34,23 +31,16 @@ Babirusa: Babirusa inherits from the animal class.
 MainGUI: A Class that creates the structure of the main GUI. Implements the PropertyChangeListener.
 
     * Has 9 private instance variables window, height, width, windowname, an array that will hold all the demos, buttons, and components. 
-    
     * InitGUI: Initialize the whole root GUI
-    
     * initWindow: Initialize GUI window
-    
     * initDemosContainer: Initializations needed for container holding Demos in window
-    
     * initContainers: initializes the window GUI structure layout sets the container section's dimensions
-    
     * propertyChange: Logic to execute when registered property(s) have changed. As soon as a demo's hasCompleted status changes to true will remove it and add/play the next Demo.
-    
     * playDemos: Starts playing all Demos from the start(index = 0)  once the user hits the "Go" button.
 
 weightComparator
 
 * Comparator that will sort animals by smallest to biggest based on weight. Used in PriorityQueueDemo.
-  
   Compare: compares two animal’s weights and sorts them from smallest to biggest
 
 PriorityQueueDemo
@@ -78,10 +68,9 @@ JSONDataStrategy
   */
 
 menuComponent
-* Builds the Go, Save, Load buttons on GUI
+Builds the Go, Save, Load buttons on GUI
 saves
 animals selected can be saved and catches errors
 Load
 Animals that were saved are loaded and catches errors
-
 
