@@ -1,6 +1,3 @@
-interface Characteristics{
-    public void animalSound();
-}
 
 abstract class Animal implements Characteristics
 {

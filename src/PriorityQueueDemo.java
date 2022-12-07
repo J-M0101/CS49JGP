@@ -44,8 +44,10 @@ public class PriorityQueueDemo extends Demo
         }
     }
 
-    private void updateLabelAnimal(Animal animal) {
-        String name = animal.getSpecies() + " weighs " + animal.getWeight() + "lbs";
+    private void updateLabelAnimal(Animal animal)
+    {
+        String name = animal.getSpecies() + " weighs " + animal.getWeight() + "lbs and makes a " +
+                animal.animalSound() + " sound.";
         animalLabel.setText(name);
         animalLabel.setIcon(createImageIcon(animal.getImgPath()));
     }
@@ -69,6 +71,5 @@ public class PriorityQueueDemo extends Demo
         getGUIContainer().repaint();
 
     }
-
 
 }

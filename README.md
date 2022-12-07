@@ -33,3 +33,41 @@ MainGUI: A Class that creates the structure of the main GUI. Implements the Prop
     - initContainers: initializes the window GUI structure layout sets the container section's dimensions
     - propertyChange: Logic to execute when registered property(s) have changed. As soon as a demo's hasCompleted status changes to true will remove it and add/play the next Demo.
     - playDemos: Starts playing all Demos from the start(index = 0)  once the user hits the "Go" button.
+
+weightComparator
+
+* Comparator that will sort animals by smallest to biggest based on weight. Used in PriorityQueueDemo.
+  
+  Compare: compares two animal’s weights and sorts them from smallest to biggest
+
+PriorityQueueDemo
+
+* Priority Queue that sorts animals based on weight. The smallest animal will
+* enter the list first and be the first one to be shown in GUI.
+  Priority Queue Demo: Sets up panel in GUI and creates priority queue sorted by weight from smallest to largest
+  nextAnimal: Shows animals selected in GUI, retrieves and removes the first element of the queue which is the smallest animal that is already sorted.
+  updateLabelAnimal: sets text box and animal image on GUI which shows the species name and weight.
+  arrayToPriorityQueue: adds selected animals to priority queue
+  play: starts retrieving selected animals in order when pressing the next button.
+
+App
+
+* Main class that runs the GUI program. Has GO, SAVE, and LOAD buttons that shows animals selected in
+* a linked list, stack, and priority queue. Title has your random farm ID and shows the total weight of all animals in farm using recursion.
+  */
+  sumOfWeight: adds entire weight of all animals in farm and displays the weight on the title
+  Main: runs entire project. Shows random farm ID along with total weight on title. Has buttons for each animal to be selected along with the go,save,load buttons. Save button will save animals selected in a file which can then be loaded and played on GUI.
+
+JSONDataStrategy
+
+* Will convert Java object into JSON format. Saves into file but does not load.
+  Save: Saves file as JSON format
+  */
+
+menuComponent
+Builds the Go, Save, Load buttons on GUI
+saves
+animals selected can be saved and catches errors
+Load
+Animals that were saved are loaded and catches errors
+
