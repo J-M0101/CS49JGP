@@ -3,5 +3,11 @@ public class Babirusa extends Animal {
     {
         super(species, weight, imgpath);
     }
+
+    @Override
+    public void animalSound() {
+        // TODO Auto-generated method stub
+        System.out.println("grunts");
+    }
     
 }

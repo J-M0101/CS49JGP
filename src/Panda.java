@@ -4,4 +4,10 @@ public class Panda extends Animal
     {
         super(species, weight, imgpath);
     }
+
+    @Override
+    public void animalSound() {
+        // TODO Auto-generated method stub
+        System.out.println("honk");
+    }
 }
