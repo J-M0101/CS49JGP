@@ -6,8 +6,9 @@ public class Panda extends Animal
     }
 
     @Override
-    public void animalSound() {
+    public String animalSound()
+    {
         // TODO Auto-generated method stub
-        System.out.println("honk");
+        return "honk";
     }
 }

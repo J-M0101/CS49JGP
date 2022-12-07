@@ -46,7 +46,8 @@ public class PriorityQueueDemo extends Demo
 
     private void updateLabelAnimal(Animal animal)
     {
-        String name = animal.getSpecies() + " weighs " + animal.getWeight() + "lbs" ;
+        String name = animal.getSpecies() + " weighs " + animal.getWeight() + "lbs and makes a " +
+                animal.animalSound() + " sound.";
         animalLabel.setText(name);
         animalLabel.setIcon(createImageIcon(animal.getImgPath()));
     }
