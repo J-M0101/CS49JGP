@@ -1,9 +1,12 @@
+/**
+ * Priority Queue that sorts animals based on weight. The smallest animal will
+ * enter the list first and be the first one to be shown in GUI.
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
-import java.util.Comparator;
 
 
 public class PriorityQueueDemo extends Demo
@@ -42,7 +45,8 @@ public class PriorityQueueDemo extends Demo
     }
 
     private void updateLabelAnimal(Animal animal) {
-        animalLabel.setText(animal.getSpecies());
+        String name = animal.getSpecies() + " weighs " + animal.getWeight() + "lbs";
+        animalLabel.setText(name);
         animalLabel.setIcon(createImageIcon(animal.getImgPath()));
     }
 
@@ -56,6 +60,7 @@ public class PriorityQueueDemo extends Demo
     {
         this.ArrayToPriorityQueue(selectedAnimals);
         Animal PresentAnimal = animalPriorityQueue.poll();
+        assert PresentAnimal != null;
         updateLabelAnimal(PresentAnimal);
         getGUIContainer().setLayout(new BorderLayout());
         getGUIContainer().add(animalLabel, BorderLayout.CENTER);
