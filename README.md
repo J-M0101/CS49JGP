@@ -19,8 +19,8 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 
 
 ## Documentation
- StackDemo: A class that utilizes a Jpanel as the parameter to display a data structure . 
-    - Has three private instance variables stack, button, and Jlabel. 
+StackDemo: A class that utilizes a Jpanel as the parameter to display a data structure . 
+Has three private instance variables stack, button, and Jlabel. 
     - The constructor sets the attributes for the class. Sets a new Stack, Button, Label, and position in the GUI.
     - ArrayToStack takes in an ArrayList parameter and through a for loop will push each item into a stack data       structure.
     - Play is used to call all the different methods to display the data to the GUI.
